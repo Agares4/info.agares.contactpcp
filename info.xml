@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<extension key="info.agares.contactpcp" type="module">
+  <file>contactpcp</file>
+  <name>ContactPCP info</name>
+  <description>Show info about contact's personal campaign pages</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>agares</author>
+    <email>drupal@agares.info</email>
+  </maintainer>
+  <urls>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate>2015-11-02</releaseDate>
+  <version>1.0</version>
+  <develStage>alpha</develStage>
+  <compatibility>
+    <ver>4.2</ver>
+  </compatibility>
+  <comments>This is a new, undeveloped module</comments>
+  <civix>
+    <namespace>CRM/Contactpcp</namespace>
+  </civix>
+</extension>
