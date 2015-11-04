@@ -2,6 +2,20 @@
 
 require_once 'contactpcp.civix.php';
 
+function contactpcp_civicrm_tabs(&$tabs, $contactID) {
+	$url = CRM_Utils_System::url(
+		'civicrm/campaign-pages/view',
+		"reset=1&cid=$contactID"
+	);
+
+	$tabs[] = array (
+		'id' => 'contact-pcp-tab',
+		'url' => $url,
+		'title' => 'Personal Campaign Pages',
+		'weight' => 300
+	);
+}
+
 /**
  * Implements hook_civicrm_config().
  *
