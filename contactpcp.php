@@ -3,16 +3,27 @@
 require_once 'contactpcp.civix.php';
 
 function contactpcp_civicrm_tabs(&$tabs, $contactID) {
-	$url = CRM_Utils_System::url(
-		'civicrm/campaign-pages/view',
-		"reset=1&cid=$contactID"
-	);
+	$version = civicrmVersion();
+	$version = $version['version'];
+
+	if(version_compare($version, '4.7.0') === -1) { // is older than 4.7.0
+		$url = CRM_Utils_System::url(
+			'civicrm/campaign-pages/view',
+			'reset=1&cid=' . $contactID
+		);
+	} else {
+			$url = CRM_Utils_System::url(
+				'civicrm/a/',
+				'reset=1&route=/contactpcp/index-angular/' . $contactID
+			);
+	}
 
 	$tabs[] = array (
 		'id' => 'contact-pcp-tab',
 		'url' => $url,
 		'title' => 'Personal Campaign Pages',
-		'weight' => 300
+		'weight' => 300,
+		'count' => 1 // todo
 	);
 }
 

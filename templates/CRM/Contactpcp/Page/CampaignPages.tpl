@@ -1,4 +1,4 @@
-<h3>Personal campaign pages for</h3>
+<h3>Personal campaign pages</h3>
 
 <table id="options" class="display">
   <thead>
