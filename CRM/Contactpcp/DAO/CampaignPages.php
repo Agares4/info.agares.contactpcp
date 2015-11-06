@@ -1,7 +1,15 @@
 <?php
 
 class CRM_Contactpcp_DAO_CampaignPages {
-  public function allForContact($contactId) {
+  public static function countForContact($contactId) {
+    $query = "SELECT COUNT(1) as pcp_count FROM civicrm_pcp WHERE contact_id = %1";
+    $result = CRM_Core_DAO::executeQuery($query, array(1 => array($contactId, 'Integer')));
+    $result->fetch();
+
+    return $result->pcp_count;
+  }
+
+  public static function allForContact($contactId) {
     $statusNames = CRM_Core_OptionGroup::values("pcp_status", FALSE, FALSE, FALSE, NULL, 'name');
 
     $query =

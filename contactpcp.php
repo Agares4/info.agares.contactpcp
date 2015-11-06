@@ -42,7 +42,7 @@ function contactpcp_civicrm_tabs(&$tabs, $contactID) {
 		'url' => $url,
 		'title' => 'Personal Campaign Pages',
 		'weight' => 300,
-		'count' => 1 // todo
+		'count' => CRM_Contactpcp_DAO_CampaignPages::countForContact($contactID)
 	);
 }
 
