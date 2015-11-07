@@ -2,22 +2,18 @@
 
 require_once 'contactpcp.civix.php';
 
-function is_civi_older($version) {
+function is_civi_newer($version) {
 	$installedVersion = civicrmVersion();
 	$installedVersion = $installedVersion['version'];
 
-	list($installedMajor, $installedMinor, $installedSuffix) = explode('.', $installedVersion);
-	list($major, $minor, $suffix) = explode('.', $version);
+	list($installedMajor, $installedMinor, ) = explode('.', $installedVersion);
+	list($major, $minor) = explode('.', $version);
 
-	if($installedMajor >= $major) {
-		return false;
-	}
-
-	if($installedMinor >= $minor) {
-		return false;
-	}
-
-	if($installedSuffix >= $suffix) {
+	if($installedMajor == $major) {
+		return $installedMinor >= $minor;
+	} else if ($installedMajor > $major) {
+		return true;
+	} else {
 		return false;
 	}
 
@@ -25,7 +21,7 @@ function is_civi_older($version) {
 }
 
 function contactpcp_civicrm_tabs(&$tabs, $contactID) {
-	if(is_civi_older('4.7.0')) {
+	if(!is_civi_newer('4.7')) {
 		$url = CRM_Utils_System::url(
 			'civicrm/campaign-pages/view',
 			'reset=1&cid=' . $contactID
